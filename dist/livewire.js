@@ -4506,9 +4506,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     mergeNewSnapshot(snapshotEncoded, effects, updates = {}) {
       let snapshot = JSON.parse(snapshotEncoded);
       let oldCanonical = deepClone(this.canonical);
-      let updatedOldCanonical = this.applyUpdates(oldCanonical, updates);
       let newCanonical = extractData(deepClone(snapshot.data));
-      let dirty = diff(updatedOldCanonical, newCanonical);
+      let dirty = diff(oldCanonical, newCanonical);
       this.snapshotEncoded = snapshotEncoded;
       this.snapshot = snapshot;
       this.effects = effects;
